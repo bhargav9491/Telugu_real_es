@@ -1,0 +1,11 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import App from './App'
+import Home from './pages/Home'
+import Properties from './pages/Properties'
+import Locations from './pages/Locations'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import './styles.css'
+createRoot(document.getElementById('root')).render(<React.StrictMode><BrowserRouter><Routes><Route path="/" element={<App/>}><Route index element={<Home/>}/><Route path="properties" element={<Properties/>}/><Route path="locations" element={<Locations/>}/><Route path="about" element={<About/>}/><Route path="contact" element={<Contact/>}/></Route></Routes></BrowserRouter></React.StrictMode>)
