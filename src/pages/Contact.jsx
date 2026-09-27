@@ -3,5 +3,118 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail, MapPin, Phone, Send, MessageCircle } from 'lucide-react'
 import { useSearchParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
-const phone='918143452143'
-export default function Contact(){const [params]=useSearchParams();const [sent,setSent]=useState(false);const [form,setForm]=useState({name:'',phone:'',interest:params.get('property')||'',location:params.get('location')||'',message:''});const update=e=>setForm({...form,[e.target.name]:e.target.value});const submit=e=>{e.preventDefault();setSent(true)};return <><PageHero eyebrow="CONTACT" title="Let’s find your" accent="next property." copy="Tell us what you’re looking for. A property category, preferred location or simply a phone number is enough to start."/><section className="section contact-premium"><div className="container contact-grid-premium"><div className="contact-details"><span className="kicker">01 / GET IN TOUCH</span><h2>One good<br/><em>conversation.</em></h2><p>For current projects, prices, dimensions, approvals and availability, please contact the team directly.</p><a className="contact-big" href={`tel:+${phone}`}><Phone/><span><small>CALL DIRECTLY</small><strong>+91 81434 52143</strong></span></a><a className="contact-big" href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer"><MessageCircle/><span><small>WHATSAPP</small><strong>Start a chat</strong></span><ArrowUpRight/></a><div className="contact-address"><MapPin/><div><b>Vijayawada Office</b><span>Brand Factory Road, Chandra Mouli Puram, Sriram Nagar, Benz Circle, Vijayawada, Andhra Pradesh 520010</span></div></div></div><motion.form className="lead-form premium-form" onSubmit={submit} initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}}><span className="kicker">02 / PROPERTY ENQUIRY</span><h3>Tell us what you need.</h3><div className="form-row"><label>Name<input name="name" value={form.name} onChange={update} required placeholder="Your name"/></label><label>Phone<input name="phone" value={form.phone} onChange={update} required placeholder="Mobile number"/></label></div><div className="form-row"><label>Property type<select name="interest" value={form.interest} onChange={update}><option value="">Select one</option><option>Residential Plot</option><option>Villa / Duplex</option><option>House</option><option>Flat</option><option>Investment Property</option></select></label><label>Preferred location<input name="location" value={form.location} onChange={update} placeholder="Vijayawada, Tadepalli..."/></label></div><label>Message<textarea name="message" value={form.message} onChange={update} rows="5" placeholder="Tell us a little about what you are looking for"/></label><button className="btn primary form-btn" type="submit">Send enquiry <Send size={17}/></button>{sent&&<p className="success">Thanks — your enquiry form is ready to connect with the Telugu States Realestate team.</p>}</motion.form></div></section></>}
+
+const phone = '918143452143'
+
+export default function Contact() {
+  const [params] = useSearchParams()
+  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState({
+    name: '',
+    phone: '',
+    interest: params.get('property') || '',
+    location: params.get('location') || '',
+    message: '',
+  })
+  const update = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const submit = e => { e.preventDefault(); setSent(true) }
+
+  return (
+    <>
+      <PageHero
+        eyebrow="CONTACT"
+        title="Let's find your"
+        accent="next property."
+        copy="Tell us what you're looking for. A property category, preferred location or simply a phone number is enough to start."
+        heroImg="/images/property_villa_vijayawada.jpg"
+      />
+
+      <section className="section contact-premium">
+        <div className="container contact-grid-premium">
+
+          {/* ── LEFT: DETAILS + PHOTO ─────────────────── */}
+          <div className="contact-details">
+            <span className="kicker">01 / GET IN TOUCH</span>
+            <h2>One good<br /><em>conversation.</em></h2>
+            <p>For current projects, prices, dimensions, approvals and availability, please contact the team directly.</p>
+
+            <a className="contact-big" href={`tel:+${phone}`}>
+              <Phone />
+              <span>
+                <small>CALL DIRECTLY</small>
+                <strong>+91 81434 52143</strong>
+              </span>
+            </a>
+            <a className="contact-big" href={`https://wa.me/${phone}`} target="_blank" rel="noreferrer">
+              <MessageCircle />
+              <span>
+                <small>WHATSAPP</small>
+                <strong>Start a chat</strong>
+              </span>
+              <ArrowUpRight />
+            </a>
+
+            <div className="contact-address">
+              <MapPin />
+              <div>
+                <b>Vijayawada Office</b>
+                <span>Brand Factory Road, Chandra Mouli Puram, Sriram Nagar, Benz Circle, Vijayawada, Andhra Pradesh 520010</span>
+              </div>
+            </div>
+
+            {/* Photo collage */}
+            <div className="contact-photo-collage">
+              <div className="cpc-main">
+                <img src="/images/property_homes_vijayawada.jpg" alt="Residential Homes" />
+                <div className="cpc-label">HOMES</div>
+              </div>
+              <div className="cpc-stack">
+                <div className="cpc-item">
+                  <img src="/images/property_plots_tadepalli.jpg" alt="Plots" />
+                  <div className="cpc-label">PLOTS</div>
+                </div>
+                <div className="cpc-item">
+                  <img src="/images/property_flats_vijayawada.jpg" alt="Flats" />
+                  <div className="cpc-label">FLATS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── RIGHT: FORM ───────────────────────────── */}
+          <motion.form
+            className="lead-form premium-form"
+            onSubmit={submit}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="kicker">02 / PROPERTY ENQUIRY</span>
+            <h3>Tell us what you need.</h3>
+            <div className="form-row">
+              <label>Name<input name="name" value={form.name} onChange={update} required placeholder="Your name" /></label>
+              <label>Phone<input name="phone" value={form.phone} onChange={update} required placeholder="Mobile number" /></label>
+            </div>
+            <div className="form-row">
+              <label>
+                Property type
+                <select name="interest" value={form.interest} onChange={update}>
+                  <option value="">Select one</option>
+                  <option>Residential Plot</option>
+                  <option>Villa / Duplex</option>
+                  <option>House</option>
+                  <option>Flat</option>
+                  <option>Investment Property</option>
+                </select>
+              </label>
+              <label>Preferred location<input name="location" value={form.location} onChange={update} placeholder="Vijayawada, Tadepalli..." /></label>
+            </div>
+            <label>Message<textarea name="message" value={form.message} onChange={update} rows="5" placeholder="Tell us a little about what you are looking for" /></label>
+            <button className="btn primary form-btn" type="submit">Send enquiry <Send size={17} /></button>
+            {sent && <p className="success">Thanks — your enquiry form is ready to connect with the Telugu States Realestate team.</p>}
+          </motion.form>
+        </div>
+      </section>
+    </>
+  )
+}
